@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../debts.dart';
 
@@ -9,17 +10,9 @@ class HomeTop extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-
-  double findSum() {
-    double sum = 0;
-    for (Debt debt in debts) {
-      sum += debt.amount;
-    }
-    return sum;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final sum = Provider.of<DebtModel>(context).findSum();
     return Container(
       height: size.height / 2,
       width: size.width,
@@ -35,7 +28,7 @@ class HomeTop extends StatelessWidget {
             child: Container(
               alignment: Alignment.topCenter,
               child: Text(
-                '\$ ${findSum().toString()}',
+                '\$ ${sum}',
                 style: TextStyle(
                   fontSize: 24,
                   color: mainRed,
@@ -47,7 +40,7 @@ class HomeTop extends StatelessWidget {
           Expanded(
             child: Container(
               child: Text(
-                'Dude, you\'re not cash machine',
+                'Dude, you\'re not a cash machine!',
                 style: bigTitle,
               ),
             ),

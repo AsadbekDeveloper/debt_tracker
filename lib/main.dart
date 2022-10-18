@@ -1,10 +1,16 @@
+import 'package:debt_tracker/debts.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'constants.dart';
 import './home_page/home_top.dart';
 import './home_page/home_bottom.dart';
+import './add_debtor.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => DebtModel(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': ((context) => HomePage()),
+        '/addDebtor': (context) => AddDebtor(),
       },
     );
   }
@@ -45,7 +52,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/addDebtor');
+            },
             icon: Icon(Icons.add_circle_outline),
           )
         ],
