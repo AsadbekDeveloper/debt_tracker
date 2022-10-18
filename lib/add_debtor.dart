@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './debts.dart';
-import 'common/dabt_item.dart';
+import 'common/avatar.dart';
 import 'dart:math';
+import './common/input_field.dart';
+import './constants.dart';
 
 class AddDebtor extends StatefulWidget {
   const AddDebtor({super.key});
@@ -14,80 +16,75 @@ class AddDebtor extends StatefulWidget {
 class _AddDebtorState extends State<AddDebtor> {
   @override
   Widget build(BuildContext context) {
-    final debtsData = Provider.of<DebtModel>(context);
+    final debtsData = Provider.of<DebtModel>(context, listen: false);
     var personNameCont = TextEditingController();
     var debtNameCont = TextEditingController();
     var amountCont = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Add Debtor"),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Row(
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Avatar(index: Random().nextInt(100)),
-              SizedBox(
-                width: 30,
+              Avatar(
+                index: Random().nextInt(100),
+                size: 100,
               ),
-              Column(
-                children: [
-                  Container(
-                    height: 60,
-                    width: 300,
-                    child: TextField(
-                      controller: personNameCont,
-                      decoration: InputDecoration(
-                          hintText: 'Person\'s Name',
-                          border: InputBorder.none,
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 35, 34, 60)),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Column(
+                  children: [
+                    InputField(
+                      mainController: personNameCont,
+                      hintText: 'Debter\'s name',
+                      type: TextInputType.name,
+                    ),
+                    InputField(
+                      mainController: debtNameCont,
+                      hintText: 'Debt\'s name',
+                      type: TextInputType.text,
+                    ),
+                    InputField(
+                      mainController: amountCont,
+                      hintText: 'Debt amount',
+                      type: TextInputType.number,
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  debtsData.addDebt(
+                    personNameCont.text,
+                    debtNameCont.text,
+                    double.parse(amountCont.text),
+                  );
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Add Debt',
+                      style: headerNormal,
                     ),
                   ),
-                  Container(
-                    width: 300,
-                    height: 60,
-                    child: TextField(
-                      controller: debtNameCont,
-                      decoration: InputDecoration(
-                        hintText: 'Debt Name',
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 35, 34, 60),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
-          Container(
-            width: 300,
-            height: 80,
-            child: TextField(
-              keyboardType: TextInputType.number,
-              controller: amountCont,
-              decoration: InputDecoration(
-                  hintText: 'Person\'s Name',
-                  border: InputBorder.none,
-                  filled: true,
-                  fillColor: Color.fromARGB(255, 35, 34, 60)),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              debtsData.addDebt(
-                personNameCont.text,
-                debtNameCont.text,
-                double.parse(amountCont.text),
-              );
-            },
-            child: Container(
-              child: Text('Add Debt'),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

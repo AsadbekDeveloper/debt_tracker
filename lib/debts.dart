@@ -16,15 +16,16 @@ class Debt {
 }
 
 class DebtModel extends ChangeNotifier {
-  List<Debt> _debts = List<Debt>.generate(
-    2,
-    (index) => Debt(
-      id: index,
-      amount: Random().nextInt(100),
-      debtName: generateWordPairs().take(3).toList().join(' '),
-      person: generateWordPairs().take(2).toList().join(' ').toUpperCase(),
-    ),
-  );
+  List<Debt> _debts = [];
+  //  List<Debt>.generate(
+  //   2,
+  //   (index) => Debt(
+  //     id: index,
+  //     amount: Random().nextInt(100),
+  //     debtName: generateWordPairs().take(3).toList().join(' '),
+  //     person: generateWordPairs().take(2).toList().join(' ').toUpperCase(),
+  //   ),
+  // );
   List<Debt> get debts => _debts;
   void addDebt(String person, String debtName, double amount) {
     _debts.add(Debt(

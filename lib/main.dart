@@ -1,3 +1,4 @@
+import 'package:debt_tracker/common/avatar.dart';
 import 'package:debt_tracker/debts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: mainBlue,
         appBarTheme: AppBarTheme(color: mainBlue),
+        drawerTheme: DrawerThemeData(backgroundColor: mainBlue),
       ),
       routes: {
         '/': ((context) => HomePage()),
@@ -69,10 +71,68 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: Center(
-          child: Text('Hello'),
-        ),
+      drawer: MainDrawer(),
+    );
+  }
+}
+
+class MainDrawer extends StatelessWidget {
+  const MainDrawer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            child: Container(
+              height: 150,
+              child: Row(
+                children: [
+                  Avatar(index: 10, size: 80),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Asadbek Janabaev'),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('@janabaevasadbek'),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.people),
+            title: Text("Debtors"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.contacts),
+            title: Text("Contacts"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.bar_chart_sharp),
+            title: Text("Statistics"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text("Profile"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text("Settings"),
+            onTap: () {},
+          ),
+        ],
       ),
     );
   }
