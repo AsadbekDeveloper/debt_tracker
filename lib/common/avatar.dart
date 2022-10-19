@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Avatar extends StatelessWidget {
-  final index;
   final double size;
 
   const Avatar({
     Key? key,
-    required this.index,
     required this.size,
   }) : super(key: key);
 
@@ -22,8 +20,12 @@ class Avatar extends StatelessWidget {
       ),
       child: CircleAvatar(
         radius: 20,
-        backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=$index'),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.grey,
+        child: Icon(
+          Icons.person,
+          size: size / 2,
+          color: Colors.white,
+        ),
       ),
     );
   }

@@ -14,28 +14,69 @@ class AddDebtor extends StatefulWidget {
 }
 
 class _AddDebtorState extends State<AddDebtor> {
+  bool isToMe = true;
+
   @override
   Widget build(BuildContext context) {
     final debtsData = Provider.of<DebtModel>(context, listen: false);
     var personNameCont = TextEditingController();
     var debtNameCont = TextEditingController();
     var amountCont = TextEditingController();
+    var dateCont = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Add Debtor"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Avatar(
-                index: Random().nextInt(100),
-                size: 100,
+              Row(
+                children: [
+                  Avatar(
+                    size: 100,
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              child: isToMe ? Text('Owes me') : Text('I owe'),
+                              width: 120,
+                            ),
+                            Switch(
+                                value: isToMe,
+                                onChanged: ((val) {
+                                  setState(() {
+                                    isToMe = val;
+                                  });
+                                })),
+                          ],
+                        ),
+                        InputField(
+                          mainController: amountCont,
+                          hintText: 'Amount',
+                          type: TextInputType.number,
+                        ),
+                        InputField(
+                          mainController: dateCont,
+                          hintText: 'Select date',
+                          type: TextInputType.datetime,
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -43,18 +84,13 @@ class _AddDebtorState extends State<AddDebtor> {
                   children: [
                     InputField(
                       mainController: personNameCont,
-                      hintText: 'Debter\'s name',
+                      hintText: 'Person\'s name',
                       type: TextInputType.name,
                     ),
                     InputField(
                       mainController: debtNameCont,
-                      hintText: 'Debt\'s name',
+                      hintText: 'Description',
                       type: TextInputType.text,
-                    ),
-                    InputField(
-                      mainController: amountCont,
-                      hintText: 'Debt amount',
-                      type: TextInputType.number,
                     ),
                   ],
                 ),
@@ -65,6 +101,8 @@ class _AddDebtorState extends State<AddDebtor> {
                     personNameCont.text,
                     debtNameCont.text,
                     double.parse(amountCont.text),
+                    isToMe,
+                    dateCont.text,
                   );
                   Navigator.of(context).pop();
                 },

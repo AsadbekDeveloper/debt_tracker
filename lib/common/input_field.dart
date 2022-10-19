@@ -14,21 +14,19 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Expanded(
-        child: TextField(
-          controller: mainController,
-          keyboardType: type,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(20),
-            hintText: hintText,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            filled: true,
-            fillColor: Color.fromARGB(255, 35, 34, 60),
+      margin: EdgeInsets.symmetric(vertical: 5),
+      child: TextField(
+        controller: mainController,
+        keyboardType: type,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(20),
+          hintText: hintText,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(30),
           ),
+          filled: true,
+          fillColor: Color.fromARGB(255, 35, 34, 60),
         ),
       ),
     );

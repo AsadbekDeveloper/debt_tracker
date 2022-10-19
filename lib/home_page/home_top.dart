@@ -38,11 +38,9 @@ class HomeTop extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Container(
-              child: Text(
-                'Dude, you\'re not a cash machine!',
-                style: bigTitle,
-              ),
+            child: Text(
+              'Dude, you\'re not a cash machine!',
+              style: bigTitle,
             ),
           ),
         ],

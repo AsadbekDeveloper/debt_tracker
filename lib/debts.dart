@@ -7,9 +7,13 @@ class Debt {
   final person;
   final debtName;
   final amount;
+  final isToMe;
+  final date;
 
   Debt(
-      {required this.id,
+      {required this.isToMe,
+      required this.date,
+      required this.id,
       required this.person,
       required this.debtName,
       required this.amount});
@@ -17,19 +21,17 @@ class Debt {
 
 class DebtModel extends ChangeNotifier {
   List<Debt> _debts = [];
-  //  List<Debt>.generate(
-  //   2,
-  //   (index) => Debt(
-  //     id: index,
-  //     amount: Random().nextInt(100),
-  //     debtName: generateWordPairs().take(3).toList().join(' '),
-  //     person: generateWordPairs().take(2).toList().join(' ').toUpperCase(),
-  //   ),
-  // );
   List<Debt> get debts => _debts;
-  void addDebt(String person, String debtName, double amount) {
+  void addDebt(
+      String person, String debtName, double amount, bool isToMe, String date) {
     _debts.add(Debt(
-        id: _debts.length, amount: amount, debtName: debtName, person: person));
+        id: _debts.length,
+        amount: amount,
+        debtName: debtName,
+        person: person,
+        isToMe: isToMe,
+        date: date));
+    notifyListeners();
   }
 
   Debt getDebt(int index) {
@@ -39,7 +41,7 @@ class DebtModel extends ChangeNotifier {
   double findSum() {
     double sum = 0;
     for (Debt debt in _debts) {
-      sum += debt.amount;
+      debt.isToMe ? sum += debt.amount : sum -= debt.amount;
     }
     return sum;
   }

@@ -91,7 +91,7 @@ class MainDrawer extends StatelessWidget {
               height: 150,
               child: Row(
                 children: [
-                  Avatar(index: 10, size: 80),
+                  Avatar(size: 80),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,

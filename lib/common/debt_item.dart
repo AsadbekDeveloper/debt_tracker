@@ -23,7 +23,6 @@ class DebtItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Avatar(
-            index: index,
             size: 40,
           ),
           Expanded(
@@ -43,7 +42,8 @@ class DebtItem extends StatelessWidget {
           ),
           Text(
             '\$ ${debt.amount}',
-            style: headerSmall.copyWith(color: mainLime),
+            style:
+                headerSmall.copyWith(color: debt.isToMe ? mainLime : mainRed),
           ),
         ],
       ),
