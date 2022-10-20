@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
-import '../debts.dart';
+import '../provider/debts.dart';
 
 class HomeTop extends StatelessWidget {
   const HomeTop({
@@ -12,7 +12,8 @@ class HomeTop extends StatelessWidget {
   final Size size;
   @override
   Widget build(BuildContext context) {
-    final sum = Provider.of<DebtModel>(context).findSum();
+    final debtsData = Provider.of<DebtModel>(context);
+    final sum = debtsData.findSum();
     return Container(
       height: size.height / 2,
       width: size.width,

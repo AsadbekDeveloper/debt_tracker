@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
-import '../debts.dart';
+import '../provider/debts.dart';
 import '../common/debt_item.dart';
 
 class HomeBottom extends StatelessWidget {
@@ -32,15 +32,58 @@ class HomeBottom extends StatelessWidget {
                 child: Image.asset('assets/images/NoItem.png'),
               )
             : Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
                 child: ListView.separated(
                   shrinkWrap: true,
                   primary: false,
                   itemCount: debts.length,
                   itemBuilder: ((context, index) {
-                    return DebtItem(index: index);
+                    return Dismissible(
+                      key: UniqueKey(),
+                      background: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(color: Colors.red),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.delete,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) {
+                        debtsData.removeDebt(index);
+                      },
+                      confirmDismiss: (direction) {
+                        return showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Confirmation'),
+                                content: const Text(
+                                    'Do you want to remove this debt?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: const Text('Yes'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    },
+                                    child: const Text('No'),
+                                  )
+                                ],
+                              );
+                            });
+                      },
+                      child: DebtItem(index: index),
+                    );
                   }),
-                  separatorBuilder: ((context, index) => SizedBox(height: 20)),
+                  separatorBuilder: ((context, index) => SizedBox(height: 10)),
                 ),
               ),
       ],

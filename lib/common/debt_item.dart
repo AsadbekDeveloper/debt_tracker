@@ -1,9 +1,8 @@
-import 'package:debt_tracker/debts.dart';
+import 'package:debt_tracker/provider/debts.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'package:provider/provider.dart';
 import './avatar.dart';
-import '../constants.dart';
 
 class DebtItem extends StatelessWidget {
   final index;

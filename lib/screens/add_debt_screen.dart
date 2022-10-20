@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './debts.dart';
-import 'common/avatar.dart';
-import 'dart:math';
-import './common/input_field.dart';
-import './constants.dart';
+import '../provider/debts.dart';
+import '../common/avatar.dart';
+import '../common/input_field.dart';
+import '../constants.dart';
 
 class AddDebtor extends StatefulWidget {
+  static final id = 'add_debtor';
   const AddDebtor({super.key});
 
   @override

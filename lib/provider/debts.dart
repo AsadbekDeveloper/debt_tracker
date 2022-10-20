@@ -1,6 +1,4 @@
-import 'dart:math';
 import 'package:flutter/cupertino.dart';
-import 'package:english_words/english_words.dart';
 
 class Debt {
   final id;
@@ -43,6 +41,28 @@ class DebtModel extends ChangeNotifier {
     for (Debt debt in _debts) {
       debt.isToMe ? sum += debt.amount : sum -= debt.amount;
     }
+    return sum;
+  }
+
+  void removeDebt(id) {
+    _debts.removeAt(id);
+    print(id);
+    notifyListeners();
+  }
+
+  List getDebtors() {
+    List<String> debtors = [];
+    _debts.forEach((debt) {
+      if (debtors.contains(debt.person) == false) debtors.add(debt.person);
+    });
+    return debtors;
+  }
+
+  double getSum(person) {
+    double sum = 0;
+    _debts.forEach((debt) {
+      if (debt.person == person) sum += debt.amount;
+    });
     return sum;
   }
 }
