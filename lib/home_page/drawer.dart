@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import '../common/avatar.dart';
 import '../screens/profile_screen.dart';
 import '../screens/debtors_screen.dart';
+import '../screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({
+  MainDrawer({
     Key? key,
   }) : super(key: key);
+  Future<User> getUser() async {
+    var user =  _auth.currentUser!;
+    return user;
+  }
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -19,60 +27,77 @@ class MainDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Container(
-              height: 150,
-              child: Row(
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        tapHandle(ProfileScreen.id);
-                      },
-                      child: Hero(tag: 'profile_pic', child: Avatar(size: 80))),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Asadbek Janabaev'),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text('@janabaevasadbek'),
-                    ],
-                  )
-                ],
-              ),
-            ),
+            child: FutureBuilder(
+                future: getUser(),
+                builder: ((context, snapshot) {
+                  return Container(
+                    height: 150,
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              tapHandle(ProfileScreen.id);
+                            },
+                            child: const Hero(
+                                tag: 'profile_pic', child: Avatar(size: 80))),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(snapshot.hasData
+                                ? snapshot.data!.displayName.toString()
+                                : 'Unknown user'),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(snapshot.hasData
+                                ? snapshot.data!.email.toString()
+                                : 'Unknown user'),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                })),
           ),
           ListTile(
-            leading: Icon(Icons.people),
-            title: Text("Debtors"),
+            leading: const Icon(Icons.people),
+            title: const Text("Debtors"),
             onTap: () {
               tapHandle(DebtorsScreen.id);
             },
           ),
           ListTile(
-            leading: Icon(Icons.contacts),
-            title: Text("Contacts"),
+            leading: const Icon(Icons.contacts),
+            title: const Text("Contacts"),
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.bar_chart_sharp),
-            title: Text("Statistics"),
+            leading: const Icon(Icons.bar_chart_sharp),
+            title: const Text("Statistics"),
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Profile"),
+            leading: const Icon(Icons.person),
+            title: const Text("Profile"),
             onTap: () {
               tapHandle(ProfileScreen.id);
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text("Settings"),
+            leading: const Icon(Icons.settings),
+            title: const Text("Settings"),
             onTap: () {},
           ),
-          AboutListTile(
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text("Log Out"),
+            onTap: () {
+              _auth.signOut();
+              Navigator.of(context).pushReplacementNamed(MyLogin.id);
+            },
+          ),
+          const AboutListTile(
             icon: Icon(
               Icons.info,
             ),

@@ -12,13 +12,13 @@ class DebtorsScreen extends StatelessWidget {
     final List debtors = debtsData.getDebtors();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Debtors'),
+        title: const Text('Debtors'),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         alignment: Alignment.topCenter,
         child: DataTable(
-            columns: [
+            columns: const [
               DataColumn(
                 label: Text(
                   'Id',

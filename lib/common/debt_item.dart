@@ -12,7 +12,7 @@ class DebtItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final debt = Provider.of<DebtModel>(context, listen: false).getDebt(index);
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       decoration: BoxDecoration(
         color: debtDark,
         borderRadius: BorderRadius.circular(10),
@@ -21,7 +21,7 @@ class DebtItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Avatar(
+          const Avatar(
             size: 40,
           ),
           Expanded(

@@ -26,7 +26,7 @@ class _AddDebtorState extends State<AddDebtor> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("Add Debtor"),
+        title: const Text("Add Debtor"),
         centerTitle: true,
       ),
       body: GestureDetector(
@@ -42,7 +42,7 @@ class _AddDebtorState extends State<AddDebtor> {
             children: [
               Row(
                 children: [
-                  Avatar(
+                  const Avatar(
                     size: 100,
                   ),
                   Expanded(
@@ -51,7 +51,7 @@ class _AddDebtorState extends State<AddDebtor> {
                         Row(
                           children: [
                             Container(
-                              child: isToMe ? Text('Owes me') : Text('I owe'),
+                              child: isToMe ? const Text('Owes me') : const Text('I owe'),
                               width: 120,
                             ),
                             Switch(
@@ -112,7 +112,7 @@ class _AddDebtorState extends State<AddDebtor> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'Add Debt',
                       style: headerNormal,

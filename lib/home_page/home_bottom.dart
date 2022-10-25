@@ -21,16 +21,14 @@ class HomeBottom extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Text(
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: const Text(
             'Recent Debts',
             style: descNormal,
           ),
         ),
         debts.isEmpty
-            ? Container(
-                child: Image.asset('assets/images/NoItem.png'),
-              )
+            ? Image.asset('assets/images/NoItem.png')
             : Padding(
                 padding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
                 child: ListView.separated(
@@ -41,9 +39,9 @@ class HomeBottom extends StatelessWidget {
                     return Dismissible(
                       key: UniqueKey(),
                       background: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(color: Colors.red),
-                        child: Align(
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(color: Colors.red),
+                        child: const Align(
                           alignment: Alignment.centerRight,
                           child: Icon(
                             Icons.delete,
@@ -83,7 +81,7 @@ class HomeBottom extends StatelessWidget {
                       child: DebtItem(index: index),
                     );
                   }),
-                  separatorBuilder: ((context, index) => SizedBox(height: 10)),
+                  separatorBuilder: ((context, index) => const SizedBox(height: 10)),
                 ),
               ),
       ],

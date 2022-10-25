@@ -18,14 +18,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Debtors'),
+        title: const Text('Debtors'),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(AddDebtor.id);
             },
-            icon: Icon(Icons.add_circle_outline),
+            icon: const Icon(Icons.add_circle_outline),
           )
         ],
         elevation: 0,

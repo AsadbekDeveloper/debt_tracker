@@ -17,8 +17,8 @@ class HomeTop extends StatelessWidget {
     return Container(
       height: size.height / 2,
       width: size.width,
-      padding: EdgeInsets.only(top: 80, left: 20, right: 20),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(top: 80, left: 20, right: 20),
+      decoration: const BoxDecoration(
           image: DecorationImage(
         image: AssetImage('assets/images/moneyBG.jpg'),
         fit: BoxFit.cover,
@@ -30,7 +30,7 @@ class HomeTop extends StatelessWidget {
               alignment: Alignment.topCenter,
               child: Text(
                 '\$ ${sum}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   color: mainRed,
                   fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class HomeTop extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Text(
               'Dude, you\'re not a cash machine!',
               style: bigTitle,

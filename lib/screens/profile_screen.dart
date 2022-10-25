@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: Column(children: [
         Column(
@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
             Container(
               width: size.width,
               height: size.height / 3,
-              child: Hero(
+              child: const Hero(
                 tag: 'profile_pic',
                 child: Icon(
                   Icons.person,
@@ -28,8 +28,8 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
               child: Text(
                 'Linnie Ramsey',
                 style: headerNormal,
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                children: [
+                children: const [
                   CardItem(
                     icon: Icon(Icons.phone),
                     type: 'Mobile',
@@ -63,8 +63,8 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Card(
             child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(children: [
+              padding: const EdgeInsets.all(20),
+              child: Column(children: const [
                 CardItem(
                     icon: Icon(Icons.bar_chart), type: 'Stats', value: '100\$')
               ]),
@@ -90,7 +90,7 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       child: Row(
         children: [
           Container(
@@ -105,7 +105,7 @@ class CardItem extends StatelessWidget {
                   type,
                   style: descSmall.copyWith(color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(

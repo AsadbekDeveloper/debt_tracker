@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762494596608",
+    "project_id": "debt-tracker-cb28e",
+    "storage_bucket": "debt-tracker-cb28e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762494596608:android:bfcbdbaf22c7a981cb0ae5",
+        "android_client_info": {
+          "package_name": "com.JanabaevAsadbek.debt_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762494596608-8m6n1pd316fkn5lmnck2qfanp952if10.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4GJxIazIyMgfbQ4djKia5DNkTi_W3TSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762494596608-8m6n1pd316fkn5lmnck2qfanp952if10.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
